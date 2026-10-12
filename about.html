@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<!--
+  ABOUT PAGE (about.html) - STRUCTURE
+  ============================================================
+  <body class="p-about">
+  |
+  |- HEADER ............ logo | menu (About is highlighted) | phone | Book Now | hamburger (phones)
+  |
+  |- MAIN
+  |   |- 1. PAGE BANNER ..... section.phr      photo + small label + <h1> + intro text
+  |   |- 2. ABOUT STORY ..... section.sec.cr   photo (left) + text, location and 3-star note (right)
+  |   |- 3. NUMBERS ......... section.sec      4 counters: room types, check-in, check-out, hotel class
+  |   |- 4. NEARBY PLACES ... section.sec.cr   4 cards: lake, temple, pagoda, viewpoint
+  |
+  |- FOOTER ............ logo | quick links | contact | booking links + social | copyright
+  |
+  |- SCRIPT ............ assets/js/main.js (animations, menu, offline)
+-->
+
+<!--
+  HOTEL MIDDLE STAR - PROJECT STRUCTURE
+  ------------------------------------------------------------
+  PAGES (one HTML file each):
+    index.html  rooms.html  restaurant.html  gallery.html  about.html  contact.html  404.html
+  The header, footer and booking blocks are repeated in every file: if you change the menu or
+  footer, change it in all pages (search for "HEADER" and "FOOTER" comments).
+
+  manifest.webmanifest    makes the site installable as an app
+  sw.js                   service worker: offline support
+  robots.txt, sitemap.xml search engine files
+  assets/
+    css/   fonts.css base.css layout.css hero.css photos.css
+           components.css animations.css responsive.css   (loaded in this order)
+    js/    main.js        animations, menu, gallery, FAQ, offline registration
+    images/ logo.png favicon.png icon-*.png and the hotel photos
+    fonts/ Inter + Playfair Display (woff2, self-hosted)
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>
+      A Home Away From Home – Hotel Middle Star
+    </title>
+    <meta name="description" content="A safe haven to unwind, with attentive service and traditional hospitality.">
+    <meta name="robots" content="index,follow">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="theme-color" content="#17483c">
+    <meta name="color-scheme" content="light">
+    <link rel="canonical" href="https://www.hotelmiddlestar.com/about.html">
+    <link rel="icon" href="assets/images/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="assets/images/icon-192.png">
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Hotel Middle Star">
+    <meta property="og:title" content="A Home Away From Home – Hotel Middle Star">
+    <meta property="og:description" content="A safe haven to unwind, with attentive service and traditional hospitality.">
+    <meta property="og:url" content="https://www.hotelmiddlestar.com/about.html">
+    <meta property="og:image" content="https://www.hotelmiddlestar.com/assets/images/hotel-exterior.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/playfair-display-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <!-- Styles: order matters (later files can override earlier ones) -->
+    <link rel="stylesheet" href="assets/css/fonts.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/hero.css">
+    <link rel="stylesheet" href="assets/css/photos.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <noscript>
+      <style>.rv{opacity:1!important;transform:none!important}.iw .sc{clip-path:none!important}</style>
+    </noscript>
+  </head>
+  <body class="p-about">
+    <!--
+  HOW TO CHANGE A PHOTO (works the same on every page)
+  1. EASIEST: save your new photo in assets/images/ with the SAME file name as the old one
+     (for example room-lake-view.jpg). Every page that shows it updates automatically.
+  2. NEW NAME: put the photo in assets/images/, open assets/css/photos.css, copy one ".ph-..." rule,
+     rename it (e.g. .ph-my-room) and point url() to your file. Then change the class of the photo
+     in this file (class="sc ph-my-room").
+  Tip: use JPG, 1200-1600 px wide, under 300 KB. Photos are marked "PHOTO:" in the comments below.
+-->
+
+    <!-- ========== HEADER: logo, desktop menu, hamburger button ========== -->
+    <header id="hd">
+      <div class="w nv">
+        <a class="lg" href="index.html"><img class="lgi" src="assets/images/logo.png" width="34" height="34" alt=""><span><small>HOTEL</small><b>MIDDLE STAR</b><em>★ ★ ★</em></span></a>
+        <nav id="nav">
+          <a href="index.html">Home</a><a href="rooms.html">Rooms</a><a href="restaurant.html">Restaurant</a><a href="gallery.html">Gallery</a><a href="about.html" class="on" aria-current="page">About</a><a href="contact.html">Contact</a><a class="mbk" href="rooms.html">Book Now</a>
+        </nav>
+        <div class="rt">
+          <a class="tel" href="tel:061456468"><i><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></i>061-456468</a><a class="bt" href="rooms.html">Book Now</a><button id="mb" class="mb" aria-label="Open menu" aria-expanded="false" aria-controls="nav"><svg class="i-menu" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" x2="20" y1="12" y2="12"/> <line x1="4" x2="20" y1="6" y2="6"/> <line x1="4" x2="20" y1="18" y2="18"/></svg><svg class="i-x" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/> <path d="m6 6 12 12"/></svg></button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ========== MAIN ========== -->
+    <main id="main" class="pt">
+
+      <!-- ========== SECTION: Page banner (inner pages) ========== -->
+      <section class="phr">
+        <div class="bg">
+          <!-- PHOTO: Hotel building | file: assets/images/hotel-exterior.jpg | change: see "HOW TO CHANGE A PHOTO" at the top of this file -->
+          <div class="sc ph-hotel-exterior">
+          </div>
+        </div>
+        <div class="w">
+          <span class="ey">About Hotel Middle Star</span>
+          <h1>
+            A Home Away From Home
+          </h1>
+          <p>
+            A safe haven to unwind, with attentive service and traditional hospitality.
+          </p>
+        </div>
+      </section>
+
+      <!-- ========== SECTION: About Hotel Middle Star ========== -->
+      <section class="sec cr">
+        <div class="w ab">
+          <div class="rv rl">
+            <!-- PHOTO: Lake-view room | file: assets/images/room-lake-view.jpg | change: see "HOW TO CHANGE A PHOTO" at the top of this file -->
+            <div class="sc ph-room-lake-view" style="background-position:center 30%" role="img" aria-label="Lake and mountain view from a Hotel Middle Star room">
+            </div>
+          </div>
+          <div class="rv rr">
+            <span class="ey">About Hotel Middle Star</span>
+            <h2>
+              A Home Away
+              <br>
+              From Home
+            </h2>
+            <p class="mu">
+              Hotel Middle Star is a true lakefront hotel on Gantavya Street, Lakeside-6, with Phewa Lake just a few steps away. Enjoy some of the most beautiful scenery in Pokhara and a holiday that feels like home.
+            </p>
+            <div class="ap">
+              <div>
+                <i><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/> <circle cx="12" cy="10" r="3"/></svg></i><span><b>Lakeside, Pokhara</b>Nepal</span>
+              </div>
+              <hr>
+              <div>
+                <i><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg></i><span><b>3-star hotel</b>Roof Top Restaurant</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== SECTION: Numbers (counters) ========== -->
+      <section class="sec">
+        <div class="w st">
+          <div class="rv">
+            <b><em data-n="3">0</em></b><span>Room Types</span>
+          </div>
+          <div class="rv" style="--d:.1s">
+            <b><em data-n="12">0</em>:00</b><span>Check-in</span>
+          </div>
+          <div class="rv" style="--d:.2s">
+            <b><em data-n="10">0</em>:00</b><span>Check-out</span>
+          </div>
+          <div class="rv" style="--d:.3s">
+            <b><em data-n="3">0</em>★</b><span>Hotel Class</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== SECTION: Around the hotel ========== -->
+      <section class="sec cr">
+        <div class="w">
+          <div class="ctr rv">
+            <span class="ey">Around the hotel</span>
+            <h2>
+              Explore Pokhara From Our Door
+            </h2>
+          </div>
+          <div class="dsh four">
+            <div class="rv" style="--d:0s">
+              <span class="cc"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/> <path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/> <path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg></span>
+              <h3>
+                Phewa Lake
+              </h3>
+              <p>
+                Lakeside walks and boat rides start just a few steps from the hotel.
+              </p>
+            </div>
+            <div class="rv" style="--d:0.1s">
+              <span class="cc"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" x2="21" y1="22" y2="22"/> <line x1="6" x2="6" y1="18" y2="11"/> <line x1="10" x2="10" y1="18" y2="11"/> <line x1="14" x2="14" y1="18" y2="11"/> <line x1="18" x2="18" y1="18" y2="11"/> <polygon points="12 2 20 7 4 7"/></svg></span>
+              <h3>
+                Tal Barahi Temple
+              </h3>
+              <p>
+                An island temple in the middle of Phewa Lake, reached by a short boat ride.
+              </p>
+            </div>
+            <div class="rv" style="--d:0.2s">
+              <span class="cc"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" x2="21" y1="22" y2="22"/> <line x1="6" x2="6" y1="18" y2="11"/> <line x1="10" x2="10" y1="18" y2="11"/> <line x1="14" x2="14" y1="18" y2="11"/> <line x1="18" x2="18" y1="18" y2="11"/> <polygon points="12 2 20 7 4 7"/></svg></span>
+              <h3>
+                World Peace Pagoda
+              </h3>
+              <p>
+                A hilltop white stupa across the lake with views over the water and the Annapurna range.
+              </p>
+            </div>
+            <div class="rv" style="--d:0.3s">
+              <span class="cc"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg></span>
+              <h3>
+                Sarangkot Viewpoint
+              </h3>
+              <p>
+                A popular hilltop viewpoint known for sunrise over the Himalayas.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ========== FOOTER: quick links, contact, booking and social links ========== -->
+    <footer>
+      <div class="w rv">
+        <div class="fo">
+          <div>
+            <a class="lg" href="index.html" style="opacity:1"><img class="lgi" src="assets/images/logo.png" width="32" height="32" alt=""><span><small>HOTEL</small><b>MIDDLE STAR</b><em>★ ★ ★</em></span></a>
+            <p>
+              Comfort • Hospitality • Memories
+            </p>
+          </div>
+          <div>
+            <h4>
+              Quick Links
+            </h4>
+            <div class="q2">
+              <div>
+                <a href="index.html">Home</a><a href="rooms.html">Rooms</a><a href="restaurant.html">Restaurant</a>
+              </div>
+              <div>
+                <a href="about.html">About</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h4>
+              Contact Us
+            </h4>
+            <a>061-456468</a><a>info@hotelmiddlestar.com</a><a>Gantavya Street, Lakeside-6, Pokhara</a>
+          </div>
+          <div>
+            <h4>
+              Book Your Stay
+            </h4>
+            <a href="rooms.html">Book via travel agents</a><a href="tel:+97761456468">Call 061-456468</a><a href="mailto:info@hotelmiddlestar.com">Email the hotel</a>
+            <div class="sl" style="margin-top:12px">
+              <a href="https://www.facebook.com/p/Hotel-Middle-Star-100075423567592/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a><a href="https://www.instagram.com/hotel_middlestar/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/> <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/> <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a><a href="https://www.tiktok.com/@hotelmiddlestarpokhara" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a>
+            </div>
+          </div>
+        </div>
+        <div class="cp">
+          <span>© 2026 Hotel Middle Star. All rights reserved.</span><span>Pokhara, Nepal</span>
+        </div>
+      </div>
+    </footer>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
+</html> 

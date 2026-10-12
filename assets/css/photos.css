@@ -1,0 +1,56 @@
+/* =====================================================
+   photos.css - Photo placeholders. Each .ph-* class holds one image from assets/images, so photos are changed in CSS only.
+   ===================================================== */
+
+/* =====================================================
+   HOW TO CHANGE OR ADD A PHOTO
+   -----------------------------------------------------
+   A) Same name:  replace the file in assets/images/ with your new
+      photo using the SAME file name. Nothing else to edit.
+   B) New photo:  copy one rule below, rename it, point url() to your file:
+
+      .ph-my-new-room {
+        background: url("../images/my-new-room.jpg") center / cover;
+      }
+
+      then use it in a page:  <div class="sc ph-my-new-room"></div>
+      ("center" can be e.g. "50% 20%" to show more of the top of the photo)
+   Best size: JPG, 1200-1600 px wide, under 300 KB.
+   ===================================================== */
+
+/* Hotel building  ->  file: assets/images/hotel-exterior.jpg  (the two % numbers = the part of the photo that stays visible: horizontal vertical) */
+.ph-hotel-exterior {
+  background: url("../images/hotel-exterior.jpg") 55% 40%/cover
+}
+
+/* Lake-view room  ->  file: assets/images/room-lake-view.jpg  (the two % numbers = the part of the photo that stays visible: horizontal vertical) */
+.ph-room-lake-view {
+  background: url("../images/room-lake-view.jpg") center 40%/cover
+}
+
+/* Deluxe twin room  ->  file: assets/images/room-deluxe-twin.jpg  (the two % numbers = the part of the photo that stays visible: horizontal vertical) */
+.ph-room-deluxe-twin {
+  background: url("../images/room-deluxe-twin.jpg") center/cover
+}
+
+/* Deluxe double room  ->  file: assets/images/room-deluxe-double.jpg  (the two % numbers = the part of the photo that stays visible: horizontal vertical) */
+.ph-room-deluxe-double {
+  background: url("../images/room-deluxe-double.jpg") center/cover
+}
+
+/* Roof top restaurant  ->  file: assets/images/restaurant-rooftop.jpg  (the two % numbers = the part of the photo that stays visible: horizontal vertical) */
+.ph-restaurant-rooftop {
+  background: url("../images/restaurant-rooftop.jpg") center/cover
+}
+
+/* Roof top bar  ->  file: assets/images/bar-rooftop.jpg  (the two % numbers = the part of the photo that stays visible: horizontal vertical) */
+.ph-bar-rooftop {
+  background: url("../images/bar-rooftop.jpg") center 45%/cover
+}
+
+
+.ph-cta {
+  background: url("../images/image.png") center / cover;
+}
+
+

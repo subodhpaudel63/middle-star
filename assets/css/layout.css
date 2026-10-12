@@ -1,0 +1,288 @@
+/* =====================================================
+   layout.css - Page scaffolding: header, navigation (incl. mobile hamburger menu), section spacing, call-to-action band and footer.
+   ===================================================== */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--bg);
+  transition: .3s
+}
+
+.nv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  height: 72px
+}
+
+.lg {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--h)
+}
+
+.lg span {
+  display: grid;
+  line-height: 1.05;
+  font-family: 'Playfair Display', serif
+}
+
+.lg small {
+  font: 10px Inter;
+  letter-spacing: .2em
+}
+
+.lg b {
+  font-size: 19px;
+  font-weight: 600
+}
+
+.lg em {
+  font-size: 7px;
+  color: var(--au);
+  letter-spacing: .3em;
+  font-style: normal;
+  text-align: center
+}
+
+
+nav {
+  display: flex;
+  gap: 30px
+}
+
+nav a {
+  font-size: 13px;
+  padding: 8px 0;
+  position: relative
+}
+
+nav a:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 2px;
+  height: 2px;
+  width: 0;
+  background: var(--au);
+  transition: .3s
+}
+
+nav a:hover:after,
+nav a.on:after {
+  width: 100%
+}
+
+nav a.on {
+  color: var(--h);
+  font-weight: 500
+}
+
+.rt {
+  display: flex;
+  align-items: center;
+  gap: 20px
+}
+
+.tel {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  font-size: 13px
+}
+
+.tel svg {
+  color: var(--au)
+}
+
+.rt .bt {
+  padding: 10px 20px
+}
+
+.sec {
+  padding: 84px 0
+}
+
+.cr {
+  background: var(--c)
+}
+
+.sh {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  margin-bottom: 36px
+}
+
+.sh p {
+  max-width: 420px;
+  margin-top: 10px
+}
+
+.vl {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--h)
+}
+
+.cta {
+  position: relative;
+  text-align: center;
+  padding: 68px 0;
+  color: #fff;
+  overflow: hidden;
+  background: linear-gradient(180deg, #3d8b94, #17483c)
+}
+
+.cta:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, .14);
+  clip-path: polygon(0 100%, 0 60%, 12% 40%, 26% 62%, 45% 30%, 60% 58%, 78% 36%, 100% 62%, 100% 100%)
+}
+
+.cta .w {
+  position: relative
+}
+
+.cta h2 {
+  color: #fff;
+  font-size: 26px
+}
+
+.cta p {
+  opacity: .85;
+  font-size: 13px;
+  margin: 8px 0 20px
+}
+
+.cta .bt {
+  background: var(--gd);
+  border: 1px solid rgba(255, 255, 255, .3)
+}
+
+footer {
+  background: #0f3329;
+  color: #d4e3da;
+  padding: 44px 0 20px;
+  font-size: 12px
+}
+
+.fo {
+  display: grid;
+  grid-template-columns: 1.3fr 1.5fr 1.3fr 1.6fr;
+  gap: 30px
+}
+
+.fo .lg {
+  color: #fff
+}
+
+.fo p {
+  opacity: .75;
+  margin-top: 10px
+}
+
+footer h4 {
+  font: 600 12px Inter;
+  color: #fff;
+  margin-bottom: 12px
+}
+
+.fo a {
+  display: block;
+  margin-bottom: 7px;
+  opacity: .8;
+  transition: .3s
+}
+
+.fo a:hover {
+  opacity: 1;
+  color: #e3c98a;
+  transform: translateX(3px)
+}
+
+.q2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr
+}
+
+.cp {
+  border-top: 1px solid rgba(255, 255, 255, .1);
+  margin-top: 26px;
+  padding-top: 14px;
+  display: flex;
+  justify-content: space-between;
+  opacity: .7
+}
+
+.fo .sl a {
+  display: grid;
+  margin: 0;
+  opacity: 1;
+  background: rgba(255, 255, 255, .14);
+  color: #fff
+}
+
+.fo .sl a:hover {
+  background: var(--au);
+  transform: translateY(-3px)
+}
+
+main,
+footer {
+  overflow-x: clip
+}
+
+.mb {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--ln);
+  background: var(--cd);
+  color: var(--h);
+  cursor: pointer;
+  place-items: center;
+  transition: .3s
+}
+
+.mb:hover {
+  background: var(--g);
+  color: #fff
+}
+
+.mbk {
+  display: none
+}
+
+header.s {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, .1)
+}
+
+.ctr {
+  text-align: center;
+  margin-bottom: 30px
+}
+.lgi img {
+  display: block;
+}
+
+
+.cta .cta-photo { 
+  position: absolute; inset: 0; z-index: 0 }
+  
+.cta .cta-photo:after {                 /* green tint over the photo */
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(23,72,60,.55), rgba(15,51,41,.85));
+}
+.cta .w { position: relative; z-index: 2 }   /* keeps the text above the photo */

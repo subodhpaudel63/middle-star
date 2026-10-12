@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<!--
+  HOTEL MIDDLE STAR - PROJECT STRUCTURE
+  ------------------------------------------------------------
+  PAGES (one HTML file each):
+    index.html  rooms.html  restaurant.html  gallery.html  about.html  contact.html  404.html
+  The header, footer and booking blocks are repeated in every file: if you change the menu or
+  footer, change it in all pages (search for "HEADER" and "FOOTER" comments).
+
+  manifest.webmanifest    makes the site installable as an app
+  sw.js                   service worker: offline support
+  robots.txt, sitemap.xml search engine files
+  assets/
+    css/   fonts.css base.css layout.css hero.css photos.css
+           components.css animations.css responsive.css   (loaded in this order)
+    js/    main.js        animations, menu, gallery, FAQ, offline registration
+    images/ logo.png favicon.png icon-*.png and the hotel photos
+    fonts/ Inter + Playfair Display (woff2, self-hosted)
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Get in Touch – Hotel Middle Star</title>
+  <meta name="description" content="Questions about your stay? Send us a message and we will reply soon.">
+  <meta name="robots" content="index,follow">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="theme-color" content="#17483c">
+  <link rel="canonical" href="https://www.hotelmiddlestar.com/contact.html">
+  <link rel="icon" href="assets/images/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/images/icon-192.png">
+  <link rel="manifest" href="manifest.webmanifest">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Hotel Middle Star">
+  <meta property="og:title" content="Get in Touch – Hotel Middle Star">
+  <meta property="og:description" content="Questions about your stay? Send us a message and we will reply soon.">
+  <meta property="og:url" content="https://www.hotelmiddlestar.com/contact.html">
+  <meta property="og:image" content="https://www.hotelmiddlestar.com/assets/images/hotel-exterior.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/playfair-display-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Styles: order matters (later files can override earlier ones) -->
+  <link rel="stylesheet" href="assets/css/fonts.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/hero.css">
+  <link rel="stylesheet" href="assets/css/photos.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+
+  <noscript>
+    <style>
+      .rv{opacity:1!important;transform:none!important}
+      .iw .sc{clip-path:none!important}
+    </style>
+  </noscript>
+</head>
+<body class="p-contact">
+<!--
+  HOW TO CHANGE A PHOTO (works the same on every page)
+  1. EASIEST: save your new photo in assets/images/ with the SAME file name as the old one
+     (for example room-lake-view.jpg). Every page that shows it updates automatically.
+  2. NEW NAME: put the photo in assets/images/, open assets/css/photos.css, copy one ".ph-..." rule,
+     rename it (e.g. .ph-my-room) and point url() to your file. Then change the class of the photo
+     in this file (class="sc ph-my-room").
+  Tip: use JPG, 1200-1600 px wide, under 300 KB. Photos are marked "PHOTO:" in the comments below.
+-->
+
+<!-- ========== HEADER: logo, desktop menu, hamburger button ========== -->
+<header id="hd">
+  <div class="w nv">
+    <a class="lg" href="index.html">
+      <img class="lgi" src="assets/images/logo.png" width="34" height="34" alt="">
+      <span>
+        <small>HOTEL</small>
+        <b>MIDDLE STAR</b>
+        <em>★ ★ ★</em>
+      </span>
+    </a>
+    <nav id="nav">
+      <a href="index.html">Home</a>
+      <a href="rooms.html">Rooms</a>
+      <a href="restaurant.html">Restaurant</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="on" aria-current="page">Contact</a>
+      <a class="mbk" href="rooms.html">Book Now</a>
+    </nav>
+    <div class="rt">
+      <a class="tel" href="tel:061456468">
+        <i>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+        </i>
+        061-456468
+      </a>
+      <a class="bt" href="rooms.html">Book Now</a>
+      <button id="mb" class="mb" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+        <svg class="i-menu" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="4" x2="20" y1="12" y2="12"/>
+          <line x1="4" x2="20" y1="6" y2="6"/>
+          <line x1="4" x2="20" y1="18" y2="18"/>
+        </svg>
+        <svg class="i-x" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 6 6 18"/>
+          <path d="m6 6 12 12"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ========== MAIN ========== -->
+<main id="main" class="pt">
+
+  <!-- ========== SECTION: Page banner (inner pages) ========== -->
+  <section class="phr">
+    <div class="bg">
+      <!-- PHOTO: Hotel building | file: assets/images/hotel-exterior.jpg | change: see "HOW TO CHANGE A PHOTO" at the top of this file -->
+      <div class="sc ph-hotel-exterior"></div>
+    </div>
+    <div class="w">
+      <span class="ey">Contact Us</span>
+      <h1>Get in Touch</h1>
+      <p>Questions about your stay? Send us a message and we will reply soon.</p>
+    </div>
+  </section>
+
+  <!-- ========== SECTION: Get in touch ========== -->
+  <section class="sec cr">
+    <div class="w cf">
+      <form class="fm rv rl" onsubmit="event.preventDefault();const f=this.elements;location.href='mailto:info@hotelmiddlestar.com?subject='+encodeURIComponent(f[3].value+' - '+f[0].value)+'&body='+encodeURIComponent('Name: '+f[0].value+'\nEmail: '+f[1].value+'\nPhone: '+f[2].value+'\n\n'+f[4].value)">
+        <div class="t">
+          <label>Full name<input required autocomplete="name" placeholder="Your name"></label>
+          <label>Email<input type="email" required autocomplete="email" placeholder="you@example.com"></label>
+        </div>
+        <div class="t">
+          <label>Phone (optional)<input type="tel" autocomplete="tel" placeholder="+977 ..."></label>
+          <label>Subject<select><option>General enquiry</option><option>Room enquiry</option><option>Restaurant &amp; bar</option><option>Feedback</option></select></label>
+        </div>
+        <label>Message<textarea rows="5" required placeholder="How can we help?"></textarea></label>
+        <button class="bt" style="justify-content:center">Send Message</button>
+      </form>
+      <div class="rv rr">
+        <span class="ey">Get in touch</span>
+        <h2>We'd love to host you</h2>
+        <div class="ci">
+          <div>
+            <span class="cc">
+              <i>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+              </i>
+            </span>
+            <p><b>Address</b><span>Gantavya Street, Lakeside-6, Pokhara</span></p>
+          </div>
+          <div>
+            <span class="cc">
+              <i>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+              </i>
+            </span>
+            <p><b>Phone</b><span>061-456468 · 9856038990 · 9856038991</span></p>
+          </div>
+          <div>
+            <span class="cc">
+              <i>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect width="20" height="16" x="2" y="4" rx="2"/>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                </svg>
+              </i>
+            </span>
+            <p><b>Email</b><span>info@hotelmiddlestar.com</span></p>
+          </div>
+          <div class="sl">
+            <b>Follow us</b>
+            <a href="https://www.facebook.com/p/Hotel-Middle-Star-100075423567592/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/hotel_middlestar/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+              </svg>
+            </a>
+            <a href="https://www.tiktok.com/@hotelmiddlestarpokhara" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION: Find us (real Google Map) ========== -->
+  <section class="sec">
+    <div class="w">
+      <div class="ctr rv">
+        <span class="ey">Find us</span>
+        <h2>Right on the Lakeside</h2>
+      </div>
+
+      <div class="mapc rv">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3515.6822170636756!2d83.95624136508049!3d28.216965983420696!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3995953911581a9f%3A0x3432207c7af3d35e!2sHotel%20Middle%20Star!5e0!3m2!1sen!2snp!4v1791782274048!5m2!1sen!2snp"
+    loading="lazy"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen
+    title="Hotel Middle Star on Google Maps">
+  </iframe>
+
+  <div class="mapi">
+    <h3>Hotel Middle Star</h3>
+    <p>Gantavya Street, Lakeside-6, Pokhara, Nepal</p>
+    <div>
+      <a class="bt" href="https://www.google.com/maps/place/Hotel+Middle+Star/@28.216966,83.9558019,17z/data=!4m9!3m8!1s0x3995953911581a9f:0x3432207c7af3d35e!5m2!4m1!1i2!8m2!3d28.216966!4d83.9583768!16s%2Fg%2F11r_xl3ncd?entry=ttu" target="_blank" rel="noopener noreferrer">Open in Google Maps</a>
+      <a class="bt o" href="https://www.google.com/maps/dir/?api=1&amp;destination=28.216966,83.9583768" target="_blank" rel="noopener noreferrer">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polygon points="3 11 22 2 13 21 11 13 3 11"/>
+        </svg>
+        Directions
+      </a>
+    </div>
+  </div>
+</div>
+
+      <p class="mapn">Live Google Maps. Use the buttons to open the full map or get directions.</p>
+    </div>
+  </section>
+
+  <!-- ========== SECTION: Good to know ========== -->
+  <section class="sec cr">
+    <div class="w">
+      <div class="ctr rv">
+        <span class="ey">Good to know</span>
+        <h2>Frequently Asked Questions</h2>
+      </div>
+      <div class="faq rv">
+        <details>
+          <summary>Where is the hotel?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <div class="fa-body"><p>Hotel Middle Star is on Gantavya Street, Lakeside-6, Pokhara, a true lakefront hotel with Phewa Lake just a few steps away.</p></div>
+        </details>
+        <details>
+          <summary>What are the check-in and check-out times?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <div class="fa-body"><p>Travel sites list check-in from 12:00 and check-out by 10:00. Please call us to confirm, especially for early arrivals or late departures.</p></div>
+        </details>
+        <details>
+          <summary>Is Wi-Fi free?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <div class="fa-body"><p>Yes, free Wi-Fi is available for guests.</p></div>
+        </details>
+        <details>
+          <summary>What comes with the rooms?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <div class="fa-body"><p>Rooms have air conditioning, large comfortable beds, wooden parquet floors, a working desk and an attached bathroom with hot and cold shower.</p></div>
+        </details>
+        <details>
+          <summary>Is there a restaurant?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <div class="fa-body"><p>Yes, our roof top restaurant and bar serves food and drinks with a wide view of Phewa Lake and the hills.</p></div>
+        </details>
+        <details>
+          <summary>How can I book a room?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <div class="fa-body"><p>Reserve through Booking.com, Agoda, Trip.com, Tripadvisor or KAYAK from the Rooms page, or call us on 061-456468, 9856038990 or 9856038991, or use the contact form above.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ========== FOOTER: quick links, contact, booking and social links ========== -->
+<footer>
+  <div class="w rv">
+    <div class="fo">
+      <div>
+        <a class="lg" href="index.html" style="opacity:1">
+          <img class="lgi" src="assets/images/logo.png" width="32" height="32" alt="">
+          <span>
+            <small>HOTEL</small>
+            <b>MIDDLE STAR</b>
+            <em>★ ★ ★</em>
+          </span>
+        </a>
+        <p>Comfort • Hospitality • Memories</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <div class="q2">
+          <div>
+            <a href="index.html">Home</a>
+            <a href="rooms.html">Rooms</a>
+            <a href="restaurant.html">Restaurant</a>
+          </div>
+          <div>
+            <a href="about.html">About</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h4>Contact Us</h4>
+        <a>061-456468</a>
+        <a>info@hotelmiddlestar.com</a>
+        <a>Gantavya Street, Lakeside-6, Pokhara</a>
+      </div>
+      <div>
+        <h4>Book Your Stay</h4>
+        <a href="rooms.html">Book via travel agents</a>
+        <a href="tel:+97761456468">Call 061-456468</a>
+        <a href="mailto:info@hotelmiddlestar.com">Email the hotel</a>
+        <div class="sl" style="margin-top:12px">
+          <a href="https://www.facebook.com/p/Hotel-Middle-Star-100075423567592/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/hotel_middlestar/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+            </svg>
+          </a>
+          <a href="https://www.tiktok.com/@hotelmiddlestarpokhara" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="cp">
+      <span>© 2026 Hotel Middle Star. All rights reserved.</span>
+      <span>Pokhara, Nepal</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

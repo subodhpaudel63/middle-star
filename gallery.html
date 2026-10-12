@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<!--
+  HOTEL MIDDLE STAR - PROJECT STRUCTURE
+  ------------------------------------------------------------
+  PAGES (one HTML file each):
+    index.html  rooms.html  restaurant.html  gallery.html  about.html  contact.html  404.html
+  The header, footer and booking blocks are repeated in every file: if you change the menu or
+  footer, change it in all pages (search for "HEADER" and "FOOTER" comments).
+
+  manifest.webmanifest    makes the site installable as an app
+  sw.js                   service worker: offline support
+  robots.txt, sitemap.xml search engine files
+  assets/
+    css/   fonts.css base.css layout.css hero.css photos.css
+           components.css animations.css responsive.css   (loaded in this order)
+    js/    main.js        animations, menu, gallery, FAQ, offline registration
+    images/ logo.png favicon.png icon-*.png and the hotel photos
+    fonts/ Inter + Playfair Display (woff2, self-hosted)
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Moments That Matter – Hotel Middle Star</title>
+  <meta name="description" content="Explore the beauty, comfort and hospitality of Hotel Middle Star.">
+  <meta name="robots" content="index,follow">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="theme-color" content="#17483c">
+  <link rel="canonical" href="https://www.hotelmiddlestar.com/gallery.html">
+  <link rel="icon" href="assets/images/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/images/icon-192.png">
+  <link rel="manifest" href="manifest.webmanifest">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Hotel Middle Star">
+  <meta property="og:title" content="Moments That Matter – Hotel Middle Star">
+  <meta property="og:description" content="Explore the beauty, comfort and hospitality of Hotel Middle Star.">
+  <meta property="og:url" content="https://www.hotelmiddlestar.com/gallery.html">
+  <meta property="og:image" content="https://www.hotelmiddlestar.com/assets/images/hotel-exterior.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/playfair-display-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Styles: order matters (later files can override earlier ones) -->
+  <link rel="stylesheet" href="assets/css/fonts.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/hero.css">
+  <link rel="stylesheet" href="assets/css/photos.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+
+  <noscript>
+    <style>
+      .rv{opacity:1!important;transform:none!important}
+      .iw .sc{clip-path:none!important}
+    </style>
+  </noscript>
+</head>
+<body class="p-gallery">
+<!--
+  HOW TO CHANGE A PHOTO (works the same on every page)
+  1. EASIEST: save your new photo in assets/images/ with the SAME file name as the old one
+     (for example room-lake-view.jpg). Every page that shows it updates automatically.
+  2. NEW NAME: put the photo in assets/images/, open assets/css/photos.css, copy one ".ph-..." rule,
+     rename it (e.g. .ph-my-room) and point url() to your file. Then change the class of the photo
+     in this file (class="sc ph-my-room").
+  Tip: use JPG, 1200-1600 px wide, under 300 KB. Photos are marked "PHOTO:" in the comments below.
+-->
+
+<!-- ========== HEADER: logo, desktop menu, hamburger button ========== -->
+<header id="hd">
+  <div class="w nv">
+    <a class="lg" href="index.html">
+      <img class="lgi" src="assets/images/logo.png" width="34" height="34" alt="">
+      <span>
+        <small>HOTEL</small>
+        <b>MIDDLE STAR</b>
+        <em>★ ★ ★</em>
+      </span>
+    </a>
+    <nav id="nav">
+      <a href="index.html">Home</a>
+      <a href="rooms.html">Rooms</a>
+      <a href="restaurant.html">Restaurant</a>
+      <a href="gallery.html" class="on" aria-current="page">Gallery</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a class="mbk" href="rooms.html">Book Now</a>
+    </nav>
+    <div class="rt">
+      <a class="tel" href="tel:061456468">
+        <i>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+        </i>
+        061-456468
+      </a>
+      <a class="bt" href="rooms.html">Book Now</a>
+      <button id="mb" class="mb" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+        <svg class="i-menu" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="4" x2="20" y1="12" y2="12"/>
+          <line x1="4" x2="20" y1="6" y2="6"/>
+          <line x1="4" x2="20" y1="18" y2="18"/>
+        </svg>
+        <svg class="i-x" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 6 6 18"/>
+          <path d="m6 6 12 12"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ========== MAIN ========== -->
+<main id="main" class="pt">
+
+  <!-- ========== SECTION: Page banner (inner pages) ========== -->
+  <section class="phr">
+    <div class="bg">
+      <!-- PHOTO: Hotel building | file: assets/images/hotel-exterior.jpg | change: see "HOW TO CHANGE A PHOTO" at the top of this file -->
+      <div class="sc ph-hotel-exterior"></div>
+    </div>
+    <div class="w">
+      <span class="ey">Our Gallery</span>
+      <h1>Moments That Matter</h1>
+      <p>Explore the beauty, comfort and hospitality of Hotel Middle Star.</p>
+    </div>
+  </section>
+
+  <!-- ========== SECTION: Our Gallery ========== -->
+  <section class="sec" id="s-gallery">
+    <div class="w">
+      <div class="sh rv">
+        <div>
+          <span class="ey">Our Gallery</span>
+          <h2>Moments That Matter</h2>
+          <p class="mu">Explore the beauty, comfort and hospitality of Hotel Middle Star.</p>
+        </div>
+        <a class="vl" href="gallery.html">
+          View All Photos
+          <i>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14"/>
+              <path d="m12 5 7 7-7 7"/>
+            </svg>
+          </i>
+        </a>
+      </div>
+      <div class="gf" id="gf">
+        <button class="chip on" data-f="All">All</button>
+        <button class="chip" data-f="Rooms">Rooms</button>
+        <button class="chip" data-f="Dining">Restaurant &amp; Bar</button>
+        <button class="chip" data-f="Hotel">Hotel</button>
+      </div>
+      <!-- GALLERY: HOW TO ADD, CHANGE OR REMOVE A PHOTO
+           CHANGE  replace the file in assets/images/ (same name), or change the ph-... class of that tile.
+           ADD     copy one whole <button class="iw rv"> ... </button> block, paste it inside this grid, then edit:
+                     data-c            category used by the filter buttons: Rooms, Dining or Hotel
+                     ph-...            the photo class (see assets/css/photos.css)
+                     aria-label + <span class="cap">   the caption text
+           REMOVE  delete the whole <button> block.
+           Tiles with class "gm" are hidden in the small strip on the home page and shown on the gallery page. -->
+      <div class="gg" id="gg">
+        <!-- PHOTO: Lake view room | category: Rooms | file: assets/images/room-lake-view.jpg -->
+        <button class="iw rv" data-c="Rooms" style="--d:.0s" aria-label="View photo: Lake view room">
+          <div class="sc ph-room-lake-view"></div>
+          <span class="cap">Lake view room</span>
+        </button>
+        <!-- PHOTO: Hotel Middle Star, Lakeside | category: Hotel | file: assets/images/hotel-exterior.jpg -->
+        <button class="iw rv" data-c="Hotel" style="--d:.08s" aria-label="View photo: Hotel Middle Star, Lakeside">
+          <div class="sc ph-hotel-exterior"></div>
+          <span class="cap">Hotel Middle Star, Lakeside</span>
+        </button>
+        <!-- PHOTO: Roof top restaurant | category: Dining | file: assets/images/restaurant-rooftop.jpg -->
+        <button class="iw rv" data-c="Dining" style="--d:.16s" aria-label="View photo: Roof top restaurant">
+          <div class="sc ph-restaurant-rooftop"></div>
+          <span class="cap">Roof top restaurant</span>
+        </button>
+        <!-- PHOTO: Deluxe double room | category: Rooms | file: assets/images/room-deluxe-double.jpg -->
+        <button class="iw rv" data-c="Rooms" style="--d:.24s" aria-label="View photo: Deluxe double room">
+          <div class="sc ph-room-deluxe-double"></div>
+          <span class="cap">Deluxe double room</span>
+        </button>
+        <!-- PHOTO: Deluxe twin room | category: Rooms | file: assets/images/room-deluxe-twin.jpg -->
+        <button class="iw rv gm" data-c="Rooms" style="--d:.0s" aria-label="View photo: Deluxe twin room">
+          <div class="sc ph-room-deluxe-twin"></div>
+          <span class="cap">Deluxe twin room</span>
+        </button>
+        <!-- PHOTO: Roof top bar | category: Dining | file: assets/images/bar-rooftop.jpg -->
+        <button class="iw rv gm" data-c="Dining" style="--d:.08s" aria-label="View photo: Roof top bar">
+          <div class="sc ph-bar-rooftop"></div>
+          <span class="cap">Roof top bar</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ========== FOOTER: quick links, contact, booking and social links ========== -->
+<footer>
+  <div class="w rv">
+    <div class="fo">
+      <div>
+        <a class="lg" href="index.html" style="opacity:1">
+          <img class="lgi" src="assets/images/logo.png" width="32" height="32" alt="">
+          <span>
+            <small>HOTEL</small>
+            <b>MIDDLE STAR</b>
+            <em>★ ★ ★</em>
+          </span>
+        </a>
+        <p>Comfort • Hospitality • Memories</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <div class="q2">
+          <div>
+            <a href="index.html">Home</a>
+            <a href="rooms.html">Rooms</a>
+            <a href="restaurant.html">Restaurant</a>
+          </div>
+          <div>
+            <a href="about.html">About</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h4>Contact Us</h4>
+        <a>061-456468</a>
+        <a>info@hotelmiddlestar.com</a>
+        <a>Gantavya Street, Lakeside-6, Pokhara</a>
+      </div>
+      <div>
+        <h4>Book Your Stay</h4>
+        <a href="rooms.html">Book via travel agents</a>
+        <a href="tel:+97761456468">Call 061-456468</a>
+        <a href="mailto:info@hotelmiddlestar.com">Email the hotel</a>
+        <div class="sl" style="margin-top:12px">
+          <a href="https://www.facebook.com/p/Hotel-Middle-Star-100075423567592/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/hotel_middlestar/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+            </svg>
+          </a>
+          <a href="https://www.tiktok.com/@hotelmiddlestarpokhara" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="cp">
+      <span>© 2026 Hotel Middle Star. All rights reserved.</span>
+      <span>Pokhara, Nepal</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ========== PHOTO LIGHTBOX (opened from the gallery) ========== -->
+<div id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+  <button id="lbx" aria-label="Close">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M18 6 6 18"/>
+      <path d="m6 6 12 12"/>
+    </svg>
+  </button>
+  <button id="lbp" aria-label="Previous photo">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="m15 18-6-6 6-6"/>
+    </svg>
+  </button>
+  <div id="lbi" class="sc"></div>
+  <button id="lbn" aria-label="Next photo">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="m9 18 6-6-6-6"/>
+    </svg>
+  </button>
+  <p id="lbc"></p>
+</div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

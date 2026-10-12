@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!--
+  HOTEL MIDDLE STAR - PROJECT STRUCTURE
+  ------------------------------------------------------------
+  PAGES (one HTML file each):
+    index.html  rooms.html  restaurant.html  gallery.html  about.html  contact.html  404.html
+  The header, footer and booking blocks are repeated in every file: if you change the menu or
+  footer, change it in all pages (search for "HEADER" and "FOOTER" comments).
+
+  manifest.webmanifest    makes the site installable as an app
+  sw.js                   service worker: offline support
+  robots.txt, sitemap.xml search engine files
+  assets/
+    css/   fonts.css base.css layout.css hero.css photos.css
+           components.css animations.css responsive.css   (loaded in this order)
+    js/    main.js        animations, menu, gallery, FAQ, offline registration
+    images/ logo.png favicon.png icon-*.png and the hotel photos
+    fonts/ Inter + Playfair Display (woff2, self-hosted)
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Taste Pokhara with a Lake View – Hotel Middle Star</title>
+<meta name="description" content="Enjoy the wide view of Phewa Lake while our cooks serve tasty food.">
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#17483c">
+<link rel="canonical" href="https://www.hotelmiddlestar.com/restaurant.html">
+<link rel="icon" href="assets/images/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/images/icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Hotel Middle Star"><meta property="og:title" content="Taste Pokhara with a Lake View – Hotel Middle Star"><meta property="og:description" content="Enjoy the wide view of Phewa Lake while our cooks serve tasty food."><meta property="og:url" content="https://www.hotelmiddlestar.com/restaurant.html"><meta property="og:image" content="https://www.hotelmiddlestar.com/assets/images/hotel-exterior.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/playfair-display-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+<!-- Styles: order matters (later files can override earlier ones) -->
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/layout.css">
+<link rel="stylesheet" href="assets/css/hero.css">
+<link rel="stylesheet" href="assets/css/photos.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/animations.css">
+<link rel="stylesheet" href="assets/css/responsive.css">
+<noscript><style>.rv{opacity:1!important;transform:none!important}.iw .sc{clip-path:none!important}</style></noscript>
+</head>
+<body class="p-restaurant">
+<!--
+  HOW TO CHANGE A PHOTO (works the same on every page)
+  1. EASIEST: save your new photo in assets/images/ with the SAME file name as the old one
+     (for example room-lake-view.jpg). Every page that shows it updates automatically.
+  2. NEW NAME: put the photo in assets/images/, open assets/css/photos.css, copy one ".ph-..." rule,
+     rename it (e.g. .ph-my-room) and point url() to your file. Then change the class of the photo
+     in this file (class="sc ph-my-room").
+  Tip: use JPG, 1200-1600 px wide, under 300 KB. Photos are marked "PHOTO:" in the comments below.
+-->
+
+<!-- ========== HEADER: logo, desktop menu, hamburger button ========== -->
+<header id="hd"><div class="w nv">
+<a class="lg" href="index.html"><img class="lgi" src="assets/images/logo.png" width="34" height="34" alt=""><span><small>HOTEL</small><b>MIDDLE STAR</b><em>★ ★ ★</em></span></a>
+<nav id="nav"><a href="index.html">Home</a><a href="rooms.html">Rooms</a><a href="restaurant.html" class="on" aria-current="page">Restaurant</a><a href="gallery.html">Gallery</a><a href="about.html">About</a><a href="contact.html">Contact</a><a class="mbk" href="rooms.html">Book Now</a></nav>
+<div class="rt"><a class="tel" href="tel:061456468"><i><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></i>061-456468</a><a class="bt" href="rooms.html">Book Now</a><button id="mb" class="mb" aria-label="Open menu" aria-expanded="false" aria-controls="nav"><svg class="i-menu" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" x2="20" y1="12" y2="12"/> <line x1="4" x2="20" y1="6" y2="6"/> <line x1="4" x2="20" y1="18" y2="18"/></svg><svg class="i-x" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/> <path d="m6 6 12 12"/></svg></button></div>
+</div></header>
+
+<!-- ========== MAIN ========== -->
+<main id="main" class="pt">
+
+<!-- ========== SECTION: Page banner (inner pages) ========== -->
+<section class="phr">
+<div class="bg"><!-- PHOTO: Roof top restaurant | file: assets/images/restaurant-rooftop.jpg | change: see "HOW TO CHANGE A PHOTO" at the top of this file -->
+<div class="sc ph-restaurant-rooftop"></div></div>
+<div class="w"><span class="ey">Roof Top Restaurant</span><h1>Taste Pokhara with a Lake View</h1><p>Enjoy the wide view of Phewa Lake while our cooks serve tasty food.</p></div></section>
+
+<!-- ========== SECTION: Roof Top Restaurant ========== -->
+<section class="sec cr"><div class="w dg">
+<div class="rv rl"><span class="ey">Roof Top Restaurant</span><h2>Taste Pokhara<br>With a Lake View</h2><p class="mu">Dine on our roof top and enjoy the wide view of Phewa Lake. Our talented chefs and cooks serve tasty food to satisfy every craving.</p>
+<a class="bt" href="restaurant.html">Our Restaurant <i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/> <path d="m12 5 7 7-7 7"/></svg></i></a>
+<div class="ft"><div><span class="cc"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/> <path d="M7 2v20"/> <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg></i></span>Roof Top Dining</div><div><span class="cc"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/> <path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/> <path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg></i></span>Wide Phewa Lake View</div><div><span class="cc"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21a1 1 0 0 0 1-1v-5.35c0-.457.316-.844.727-1.041a4 4 0 0 0-2.134-7.589 5 5 0 0 0-9.186 0 4 4 0 0 0-2.134 7.588c.411.198.727.585.727 1.041V20a1 1 0 0 0 1 1Z"/> <path d="M6 17h12"/></svg></i></span>Talented Chefs &amp; Cooks</div></div></div>
+<div class="rv rr"><!-- PHOTO: Roof top restaurant | file: assets/images/restaurant-rooftop.jpg | change: see "HOW TO CHANGE A PHOTO" at the top of this file -->
+<div class="sc ph-restaurant-rooftop big" role="img" aria-label="Roof top restaurant with lake and mountain views"></div></div></div></section>
+
+<!-- ========== SECTION: Restaurant & Bar ========== -->
+<section class="sec cr"><div class="w dg" style="grid-template-columns:1.25fr 1fr"><div class="rv rl"><!-- PHOTO: Roof top bar | file: assets/images/bar-rooftop.jpg | change: see "HOW TO CHANGE A PHOTO" at the top of this file -->
+<div class="sc ph-bar-rooftop big" role="img" aria-label="Roof top bar at Hotel Middle Star"></div></div><div class="rv rr"><span class="ey">Restaurant &amp; Bar</span><h2>Unwind at Our<br>Roof Top Bar</h2><p class="mu">After a day exploring Pokhara, relax at our roof top bar with a drink and the lake air close by.</p></div></div></section>
+
+<!-- ========== SECTION: Why Dine With Us ========== -->
+<section class="sec"><div class="w"><span class="ey rv">Why Dine With Us</span><h2 class="rv" style="margin-bottom:30px">Neverending Tasty Food</h2><div class="dsh"><div class="rv" style="--d:.0s"><span class="cc"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/> <path d="M7 2v20"/> <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg></span><h3>Roof Top Restaurant</h3><p>Dine on our roof top with a wide, refreshing view of nearby Phewa Lake.</p></div><div class="rv" style="--d:.1s"><span class="cc"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21a1 1 0 0 0 1-1v-5.35c0-.457.316-.844.727-1.041a4 4 0 0 0-2.134-7.589 5 5 0 0 0-9.186 0 4 4 0 0 0-2.134 7.588c.411.198.727.585.727 1.041V20a1 1 0 0 0 1 1Z"/> <path d="M6 17h12"/></svg></span><h3>Talented Chefs</h3><p>Our cooks do their best to satisfy your craving for tasty food.</p></div><div class="rv" style="--d:.2s"><span class="cc"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/> <path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/> <path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg></span><h3>Lakefront Setting</h3><p>A true waterfront hotel in Lakeside, with the lake just a few steps away.</p></div></div></div></section>
+
+</main>
+
+<!-- ========== FOOTER: quick links, contact, booking and social links ========== -->
+<footer><div class="w rv"><div class="fo">
+<div><a class="lg" href="index.html" style="opacity:1"><img class="lgi" src="assets/images/logo.png" width="32" height="32" alt=""><span><small>HOTEL</small><b>MIDDLE STAR</b><em>★ ★ ★</em></span></a><p>Comfort • Hospitality • Memories</p></div>
+<div><h4>Quick Links</h4><div class="q2"><div><a href="index.html">Home</a><a href="rooms.html">Rooms</a><a href="restaurant.html">Restaurant</a></div><div><a href="about.html">About</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a></div></div></div>
+<div><h4>Contact Us</h4><a>061-456468</a><a>info@hotelmiddlestar.com</a><a>Gantavya Street, Lakeside-6, Pokhara</a></div>
+<div><h4>Book Your Stay</h4><a href="rooms.html">Book via travel agents</a><a href="tel:+97761456468">Call 061-456468</a><a href="mailto:info@hotelmiddlestar.com">Email the hotel</a><div class="sl" style="margin-top:12px"><a href="https://www.facebook.com/p/Hotel-Middle-Star-100075423567592/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a><a href="https://www.instagram.com/hotel_middlestar/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/> <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/> <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a><a href="https://www.tiktok.com/@hotelmiddlestarpokhara" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a></div></div></div>
+<div class="cp"><span>© 2026 Hotel Middle Star. All rights reserved.</span><span>Pokhara, Nepal</span></div></div></footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

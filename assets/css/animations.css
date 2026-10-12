@@ -1,0 +1,121 @@
+/* =====================================================
+   animations.css - Scroll reveal, page-entry animations, keyframes and the reduced-motion override.
+   ===================================================== */
+
+.iw .sc {
+  height: 100%;
+  transition: transform .8s
+}
+
+.rv {
+  opacity: 0;
+  transform: translateY(34px);
+  transition: opacity 1s cubic-bezier(.22, 1, .36, 1), transform 1s cubic-bezier(.22, 1, .36, 1);
+  transition-delay: var(--d, 0s)
+}
+
+.rl {
+  transform: translateX(-44px)
+}
+
+.rr {
+  transform: translateX(44px)
+}
+
+.rv.in {
+  opacity: 1;
+  transform: none
+}
+
+.iw .sc {
+  clip-path: inset(0 0 100% 0)
+}
+
+.in .iw .sc,
+.iw.in .sc {
+  clip-path: inset(0)
+}
+
+.iw .sc {
+  transition: transform .8s cubic-bezier(.22, 1, .36, 1)
+}
+
+.rcd:hover .iw .sc,
+.gg .iw:hover .sc {
+  transform: scale(1.1)
+}
+
+@media(prefers-reduced-motion:reduce) {
+  * {
+    animation: none !important;
+    transition: none !important
+  }
+
+  .rv {
+    opacity: 1;
+    transform: none
+  }
+
+  .iw .sc {
+    clip-path: none;
+    transform: none
+  }
+}
+
+.pt .phr .w>* {
+  animation: up .9s both
+}
+
+.pt .phr .w>:nth-child(2) {
+  animation-delay: .12s
+}
+
+.pt .phr .w>:nth-child(3) {
+  animation-delay: .24s
+}
+
+.pt .phr .sc {
+  animation: kb 1.8s cubic-bezier(.22, 1, .36, 1) both
+}
+
+.rv .sc {
+  transition: transform .8s cubic-bezier(.22, 1, .36, 1), clip-path 1.1s cubic-bezier(.22, 1, .36, 1)
+}
+
+.sec .ey:after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background: var(--au);
+  margin-top: 8px;
+  transition: width .9s .3s
+}
+
+.rv.in .ey:after {
+  width: 34px
+}
+
+.ctr .ey:after,
+.ts .hd .ey:after {
+  margin-inline: auto
+}
+
+@media(prefers-reduced-motion:reduce) {
+  .sec .ey:after {
+    width: 34px
+  }
+}
+
+@keyframes up {
+  from {
+    opacity: 0;
+    transform: translateY(26px)
+  }
+}
+
+@keyframes kb {
+  from {
+    transform: scale(1.14)
+  }
+}

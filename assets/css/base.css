@@ -1,0 +1,179 @@
+/* =====================================================
+   base.css - Design tokens (colours, spacing, shadows), reset, typography and buttons. Light and dark themes live here.
+   ===================================================== */
+
+:root {
+  --g: #17483c;
+  --gd: #0f3329;
+  --h: #17483c;
+  --c: #f7f2e8;
+  --bg: #fff;
+  --cd: #fff;
+  --au: #b8893a;
+  --ink: #1f2d28;
+  --mu: #6c766f;
+  --ln: #e9e5db;
+  --ic: #f0e7d2; /* icon circles: cream */
+  --sg: #f2ead8; /* booking-agents band: cream */
+  --sh: 0 8px 30px rgba(30, 50, 40, .08);
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px)
+}
+
+@media(prefers-color-scheme:light) {
+  :root:not([data-theme="light"]) {
+    --h: #d8e6dc;
+    --c: #16231e;
+    --bg: #101b17;
+    --cd: #1b2b25;
+    --ink: #eef0ea;
+    --mu: #a3aea7;
+    --ln: #2a3b34;
+    --ic: #26392f;
+    --sg: #142019;
+    --sh: 0 8px 30px rgba(0, 0, 0, .35)
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px
+}
+
+body {
+  font: 15px/1.6 Inter, system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--ink)
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 500;
+  color: var(--h);
+  line-height: 1.15
+}
+
+h1 {
+  font-size: clamp(36px, 5.5vw, 58px)
+}
+
+h2 {
+  font-size: clamp(26px, 3.4vw, 38px)
+}
+
+h3 {
+  font-size: 19px
+}
+
+a {
+  color: inherit;
+  text-decoration: none
+}
+
+[hidden] {
+  display: none !important
+}
+
+.w {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 28px
+}
+
+.ey {
+  display: block;
+  font-size: 11px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--h);
+  margin-bottom: 14px
+}
+
+.mu {
+  color: var(--mu)
+}
+
+svg {
+  flex: none
+}
+
+.bt {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--g);
+  color: #fff;
+  border-radius: 999px;
+  padding: 13px 26px;
+  font: 600 13px Inter;
+  border: 0;
+  cursor: pointer;
+  transition: .3s
+}
+
+.bt:hover {
+  background: var(--gd);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(29, 74, 59, .35)
+}
+
+.bt svg,
+.ob svg,
+.vl svg {
+  transition: .3s
+}
+
+.bt:hover svg,
+.ob:hover svg,
+.vl:hover svg {
+  transform: translateX(4px)
+}
+
+.ob {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--ln);
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--h);
+  transition: .3s
+}
+
+.ob:hover {
+  background: var(--g);
+  color: #fff;
+  border-color: var(--g)
+}
+
+html {
+  overflow-x: clip
+}
+
+svg {
+  max-width: 100%
+}
+
+:root[data-theme="dark"] {
+  --h: #d8e6dc;
+  --c: #16231e;
+  --bg: #101b17;
+  --cd: #1b2b25;
+  --ink: #eef0ea;
+  --mu: #a3aea7;
+  --ln: #2a3b34;
+  --ic: #26392f;
+  --sg: #142019;
+  --sh: 0 8px 30px rgba(0, 0, 0, .35)
+}

@@ -1,0 +1,123 @@
+/* =====================================================
+   hero.css - Home hero cover and the photo banner at the top of every inner page.
+   ===================================================== */
+
+.hero {
+  position: relative;
+  z-index: 3;
+  background: #f7f2e8
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden
+}
+
+.hero .ct {
+  position: relative;
+  z-index: 2;
+  padding-top: 84px;
+  min-height: 620px
+}
+
+.hero .ey,
+.hero h1 {
+  color: #14352b
+}
+
+.hero h1 {
+  margin-bottom: 14px
+}
+
+.hero p {
+  max-width: 420px;
+  color: #24372f
+}
+
+.hero .ct>* {
+  animation: up .9s both
+}
+
+.hero .ct>:nth-child(2) {
+  animation-delay: .15s
+}
+
+.hero .ct>:nth-child(3) {
+  animation-delay: .3s
+}
+
+.hero .ct>:nth-child(4) {
+  animation-delay: .45s
+}
+
+.bs {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  margin-top: 26px
+}
+
+.loc {
+  position: absolute;
+  left: 28px;
+  bottom: 70px;
+  color: #fff;
+  font-size: 12px;
+  display: flex;
+  gap: 6px;
+  align-items: center
+}
+
+.phr {
+  position: relative;
+  padding: 76px 0 100px;
+  overflow: hidden
+}
+
+.phr .w {
+  position: relative;
+  z-index: 2
+}
+
+.phr h1 {
+  color: #14352b;
+  font-size: clamp(32px, 4.5vw, 48px)
+}
+
+.phr .ey {
+  color: #14352b
+}
+
+.phr p {
+  max-width: 460px;
+  color: #24372f;
+  margin-top: 10px
+}
+
+.hero .bg:after,
+.phr .bg:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(247, 242, 232, .94), rgba(247, 242, 232, .72) 45%, rgba(247, 242, 232, .1) 85%)
+}
+
+.hero .loc {
+  color: #14352b
+}
+
+.hero .bg:after {
+  background: linear-gradient(90deg, rgba(247, 242, 232, .97) 0, rgba(247, 242, 232, .9) 34%, rgba(247, 242, 232, .3) 56%, transparent 76%)
+}
+
+.hero .sc,
+.phr .sc {
+  position: absolute;
+  inset: 0
+}
+
+.hero .sc {
+  left: 30%
+}
+
