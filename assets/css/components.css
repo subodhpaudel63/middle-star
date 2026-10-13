@@ -314,7 +314,19 @@
 
 .ts .hd .ey {
   color: var(--mu);
-  font-size: 9px
+  font-size: 9px;
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: .22em
+}
+
+.ts .hd .ey:after {
+  content: "";
+  display: block;
+  width: 34px;
+  height: 2px;
+  background: var(--au);
+  margin: 8px auto 0;
 }
 
 .tg {
@@ -657,6 +669,8 @@ button.iw {
 .av-g {
   background: var(--g)
 }
+.av-w { 
+  background: #1fa855 }   /* WhatsApp green */
 
 #mb .i-x {
   display: none
